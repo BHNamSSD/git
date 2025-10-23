@@ -100,5 +100,5 @@ git push            # Đẩy code lên GitHub
 | git add .              | # Thêm file mới/thay đổi         |
 | git commit -m "note"   | # Ghi lại thay đổi               |
 | git pull               | # Lấy thay đổi mới nhất          |
-| git push)              | # Đẩy code lên GitHub            |
+| git push               | # Đẩy code lên GitHub            |
 
