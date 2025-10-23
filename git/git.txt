@@ -1,0 +1,102 @@
+==============================================================
+🔹 Cách 1: Dùng GitHub token (bắt buộc với HTTPS) ✅ (Khuyên dùng)
+==============================================================
+GitHub không còn cho phép dùng mật khẩu thật từ năm 2021.
+Thay vào đó, bạn cần Personal Access Token (PAT).
+
+👉 Các bước tạo token:
+
+Vào https://github.com/settings/tokens
+
+👉 Quay lại terminal:
+
+Git hỏi:
+Username for 'https://github.com':
+
+Username for 'https://github.com':
+
+→ Dán token vừa tạo (chuột phải hoặc Ctrl+Shift+V để dán
+
+git push -u origin main
+
+
+
+
+==============================================================
+🔹 Cách 2: Dùng SSH (nếu bạn không muốn nhập token mỗi lần)
+==============================================================
+Cách này tiện hơn, nhưng cần cấu hình thêm:
+ssh-keygen -t ed25519 -C "email_github@example.com"
+
+
+Rồi copy public key (id_ed25519.pub) dán vào GitHub → Settings → SSH and GPG keys.
+Sau đó, dùng URL SSH thay cho HTTPS:
+
+git remote set-url origin git@github.com:<user>/<repo>.git
+
+
+✅ Bước tiếp theo — Thêm SSH key vào GitHub
+Chạy lệnh để xem public key:
+cat ~/.ssh/id_ed25519.pub
+Sao chép toàn bộ dòng bắt đầu bằng:
+ssh-ed25519 AAAAC3Nz...
+
+Rồi truy cập:
+👉 https://github.com/settings/keys
+
+Nhấn:
+New SSH key
+Title: elk-center
+Paste key vào ô “Key”
+Nhấn Add SSH key
+
+🧠 Kiểm tra kết nối:
+ssh -T git@github.com
+
+Nếu thành công, Git sẽ trả lời:
+Hi <tên_user>! You've successfully authenticated, but GitHub does not provide shell access.
+
+
+Sau đó, đổi remote URL trong repo về SSH:
+cd /đường_dẫn_repo
+git remote set-url origin git@github.com:<user>/<repo>.git
+
+#xem
+git remote -v
+💡 Ví dụ kết quả:
+🔹 Trường hợp HTTPS:
+origin  https://github.com/BHNamSSD/DigitalSignature.git (fetch)
+origin  https://github.com/BHNamSSD/DigitalSignature.git (push)
+→ Nghĩa là repo đang kết nối bằng HTTPS (sẽ yêu cầu username/token khi push).
+
+🔹 Trường hợp SSH:
+origin  git@github.com/BHNamSSD/DigitalSignature.git (fetch)
+origin  git@ggithub.com/BHNamSSD/DigitalSignature.git (push)
+→ Repo đang kết nối bằng SSH (sử dụng key, không cần nhập mật khẩu)
+
+🔹 Trường hợp không có remote:
+Nếu bạn thấy không có dòng nào, nghĩa là repo chưa được gắn với GitHub.
+Bạn cần thêm bằng lệnh:
+git remote add origin git@github.com:<user>/<repo>.git
+
+🔹 Nếu bạn muốn đổi sang SSH:
+Ví dụ bạn đang dùng HTTPS, muốn đổi sang SSH:
+git remote set-url origin git@github.com:<user>/<repo>.git
+git remote set-url origin git@github.com:BHNamSSD/DigitalSignature.git
+
+git remote -v
+
+
+
+Và push lại:
+git push -u origin main
+→ Không cần nhập username/token nữa
+
+
+
+
+
+
+
+
+
