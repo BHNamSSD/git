@@ -94,5 +94,11 @@ git commit -m "Cập nhật giao diện chính"
 git pull            # Lấy thay đổi mới nhất
 git push            # Đẩy code lên GitHub
 
-
+| code                         | Note                       |
+| ---------------------------- | -------------------------- |
+| git status             | # Kiểm tra trạng thái            |
+| git add .              | # Thêm file mới/thay đổi         |
+| git commit -m "note"   | # Ghi lại thay đổi               |
+| git pull               | # Lấy thay đổi mới nhất          |
+| git push)              | # Đẩy code lên GitHub            |
 
